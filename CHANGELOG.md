@@ -5,6 +5,51 @@ All notable changes to the New Year 2026 project will be documented in this file
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.2.0] - 2025-12-21
+
+### Changed - Hero Section Button Layout 🎨
+
+#### Button Restructuring
+- **Two-Row Layout**: Reorganized CTA buttons into cleaner visual hierarchy
+  - **First Row**: "View Countdown" and "Start Fireworks" side-by-side
+  - **Second Row**: "Visit 2025 Tech" centered on its own line
+- Improved visual separation and emphasis on tech navigation
+
+#### HTML Updates
+- Added `.cta-row` container divs for button grouping
+- Added `.cta-row-center` class for centered second row
+- Maintains existing button styling and functionality
+- Enhanced semantic structure
+
+#### CSS Enhancements
+- Updated `.cta-buttons` to use `flex-direction: column`
+- Added `.cta-row` styles for horizontal button groups
+- Added `.cta-row-center` for centered alignment
+- Responsive flex-wrap support maintained
+- Consistent gap spacing (`var(--spacing-sm)`)
+
+### Improved - Visit 2025 Tech Function ⚡
+
+#### Cleaner User Experience
+- **Removed Fireworks**: Eliminated `startCelebration()` call from `visitTo2025Tech()`
+- Provides focused countdown experience without visual distractions
+- Smoother transition to 2025 Tech page
+- User can still manually trigger fireworks with dedicated button
+
+#### Function Optimization
+- Simplified countdown logic (3 → 2 → 1 → navigate)
+- Maintained button animation and launch effect
+- Preserved countdown number pulse animations
+- Keeps 1-second interval timing
+- Navigation delay of 1000ms after countdown
+
+### Files Modified
+- `index.html` - Button layout restructure (lines 70-91)
+- `styles.css` - Added row layout styles (lines 381-398)
+- `script.js` - Removed fireworks from visit function (lines 155-194)
+
+---
+
 ## [2.1.0] - 2025-12-21
 
 ### Added - 2025 Tech Updates Page 🚀

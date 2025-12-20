@@ -380,10 +380,23 @@ body {
 
 .cta-buttons {
     display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+    justify-content: center;
+    align-items: center;
+}
+
+.cta-row {
+    display: flex;
     gap: var(--spacing-sm);
     justify-content: center;
     flex-wrap: wrap;
 }
+
+.cta-row-center {
+    justify-content: center;
+}
+
 
 .btn {
     padding: 1rem 2rem;
@@ -446,6 +459,76 @@ body {
     position: relative;
     z-index: 1;
 }
+
+/* Tech Button Special Styles */
+.btn-tech {
+    background: linear-gradient(135deg, #00f2fe 0%, #4facfe 100%);
+    color: white;
+    box-shadow: 0 10px 30px rgba(0, 242, 254, 0.3);
+    position: relative;
+}
+
+.btn-tech:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 15px 40px rgba(0, 242, 254, 0.5);
+}
+
+.btn-tech .tech-icon {
+    animation: rocketBounce 1s infinite;
+    display: inline-block;
+}
+
+@keyframes rocketBounce {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-5px);
+    }
+}
+
+.btn-tech .tech-countdown {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    background: var(--secondary-gradient);
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 900;
+    font-size: 0.9rem;
+    box-shadow: 0 5px 20px rgba(245, 87, 108, 0.5);
+    opacity: 0;
+    transform: scale(0);
+    transition: all 0.3s ease;
+}
+
+.btn-tech.counting .tech-countdown {
+    opacity: 1;
+    transform: scale(1);
+    animation: countdownPulse 1s infinite;
+}
+
+@keyframes countdownPulse {
+
+    0%,
+    100% {
+        transform: scale(1);
+        box-shadow: 0 5px 20px rgba(245, 87, 108, 0.5);
+    }
+
+    50% {
+        transform: scale(1.1);
+        box-shadow: 0 5px 30px rgba(245, 87, 108, 0.8);
+    }
+}
+
 
 /* Floating Elements */
 .floating-elements {

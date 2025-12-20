@@ -150,3 +150,44 @@ if ('vibrate' in navigator) {
 window.scrollToSection = scrollToSection;
 window.startCelebration = startCelebration;
 window.changeQuote = changeQuote;
+
+// ===== VISIT TO 2025 TECH FUNCTION =====
+window.visitTo2025Tech = function () {
+    const techBtn = document.querySelector('.btn-tech');
+    const countdownElement = document.getElementById('techCountdown');
+
+    // Disable button during countdown
+    techBtn.disabled = true;
+    techBtn.classList.add('counting');
+
+    let countdown = 3;
+    countdownElement.textContent = countdown;
+
+    // Countdown interval
+    const countdownInterval = setInterval(() => {
+        countdown--;
+        if (countdown > 0) {
+            countdownElement.textContent = countdown;
+            // Add pulse animation on each count
+            countdownElement.style.transform = 'scale(1.5)';
+            setTimeout(() => {
+                countdownElement.style.transform = 'scale(1)';
+            }, 100);// 100ms delay for smooth animation
+        } else {
+            clearInterval(countdownInterval);
+            // Hide countdown and navigate
+            techBtn.classList.remove('counting');
+
+            // Add launch animation
+            techBtn.style.transform = 'translateY(-200vh) scale(0.5)';
+            techBtn.style.transition = 'all 1s ease-in';
+
+            // Navigate to 2025 Tech page after animation
+            setTimeout(() => {
+                window.location.href = '2025.html';
+            }, 500);// 500ms delay for smooth animation
+        }
+    }, 500);// 500ms delay for smooth animation
+};
+
+

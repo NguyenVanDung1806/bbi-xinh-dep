@@ -68,17 +68,26 @@
                     possibilities of 2026.</p>
             </div>
             <div class="cta-buttons">
-                <button class="btn btn-primary" onclick="scrollToSection('countdown')">
-                    <span>View Countdown</span>
-                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-                        <path d="M7.5 15L12.5 10L7.5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                            stroke-linejoin="round" />
-                    </svg>
-                </button>
-                <button class="btn btn-secondary" onclick="startCelebration()">
-                    <span>Start Fireworks</span>
-                    <span class="sparkle">🎆</span>
-                </button>
+                <div class="cta-row">
+                    <button class="btn btn-primary" onclick="scrollToSection('countdown')">
+                        <span>View Countdown</span>
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                            <path d="M7.5 15L12.5 10L7.5 5" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                    </button>
+                    <button class="btn btn-secondary" onclick="startCelebration()">
+                        <span>Start Fireworks</span>
+                        <span class="sparkle">🎆</span>
+                    </button>
+                </div>
+                <div class="cta-row cta-row-center">
+                    <button class="btn btn-tech" onclick="visitTo2025Tech()">
+                        <span class="tech-icon">🚀</span>
+                        <span>Visit 2025 Tech</span>
+                        <span class="tech-countdown" id="techCountdown">3</span>
+                    </button>
+                </div>
             </div>
         </div>
 
