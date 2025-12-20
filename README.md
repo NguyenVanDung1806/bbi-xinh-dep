@@ -6,8 +6,8 @@
 
 > A premium, interactive New Year celebration web application with enterprise-level security and modern modular architecture.
 
-**Live Demo**: [wishto2026.netlify.app](https://github.com/Srijan-XI/wishto2026)  
-**Repository**: [github.com/Srijan-XI/wishto2026](https://github.com/Srijan-XI/wishto2026)
+**Live Demo**: [wishto2026](https://srijan-xi.github.io/wishto2026/)  
+**Repository**: [wishto2026](https://github.com/Srijan-XI/wishto2026)
 
 ---
 
