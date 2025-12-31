@@ -1,4 +1,43 @@
-/* ===== ROOT VARIABLES & DESIGN SYSTEM ===== */
+/* ===== PERFORMANCE OPTIMIZATION FOR MOBILE ===== */
+@media (max-width: 768px) {
+    /* Disable heavy blur effects on mobile to fix lag */
+    .navbar, 
+    .feature-card, 
+    .resolution-card, 
+    .memory-card, 
+    .wish-card,
+    .countdown-card,
+    .timeline-content, 
+    .contact-info, 
+    .contact-form-wrapper,
+    .footer {
+        backdrop-filter: none !important;
+        -webkit-backdrop-filter: none !important;
+        background: rgba(20, 10, 10, 0.95) !important; /* Solid dark background */
+        box-shadow: none !important;
+        border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    }
+
+    /* Simplify background gradient */
+    .bg-gradient {
+        background: #12050b !important; /* Solid color instead of complex gradient */
+    }
+    
+    .bg-gradient::after {
+        display: none !important; /* Remove overlay gradient */
+    }
+
+    /* Disable floating animation for background particles */
+    .particle {
+        animation: none !important;
+        opacity: 0.3 !important;
+    }
+
+    /* Remove heavy shadows from buttons */
+    .btn {
+        box-shadow: none !important;
+    }
+}
 :root {
     /* Color Palette - Romantic Modern */
     --primary-gradient: linear-gradient(135deg, #ff9a9e 0%, #fecfef 99%, #fecfef 100%);
@@ -2118,6 +2157,37 @@ body {
         height: 52px;
         bottom: 70px;
         right: 15px;
+    }
+
+    /* Move Music Toggle to Floating Button on Mobile */
+    #musicToggle {
+        position: fixed;
+        bottom: 135px; /* Above back-to-top (70 + 52 + 13) */
+        right: 15px;
+        width: 52px;
+        height: 52px;
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        border: 2px solid rgba(255, 255, 255, 0.2);
+        border-radius: 50%;
+        z-index: 105; /* Higher than nav */
+        display: flex !important;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        padding: 0;
+        margin: 0;
+    }
+
+    #musicToggle svg {
+        width: 24px;
+        height: 24px;
+    }
+
+    #musicToggle:active {
+        transform: scale(0.95);
+        background: var(--primary-gradient);
     }
 }
 

@@ -134,14 +134,8 @@ if (heroTitle) {
 }
 
 // ===== MOBILE OPTIMIZATIONS =====
-// Prevent double-tap zoom on buttons
-document.addEventListener('touchend', (e) => {
-    const target = e.target;
-    if (target.tagName === 'BUTTON' || target.closest('button')) {
-        e.preventDefault();
-        target.click();
-    }
-}, { passive: false });
+// ===== MOBILE OPTIMIZATIONS =====
+// (Manual tap handling removed as viewport meta tag handles delay correctly on modern devices)
 
 // Optimize input focus for mobile
 const inputs = document.querySelectorAll('input, textarea');

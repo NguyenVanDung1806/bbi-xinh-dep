@@ -34,9 +34,13 @@ export function initMobileMenu() {
 
 // ===== BACKGROUND MUSIC TOGGLE =====
 // ===== BACKGROUND MUSIC TOGGLE =====
+// ===== BACKGROUND MUSIC TOGGLE =====
+// ===== BACKGROUND MUSIC TOGGLE =====
 export function initMusicToggle() {
     const musicToggle = document.getElementById('musicToggle');
     const bgMusic = document.getElementById('bgMusic');
+    
+    if (!musicToggle || !bgMusic) return;
     
     // SVGs
     const iconSoundOn = `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path></svg>`;
@@ -44,37 +48,65 @@ export function initMusicToggle() {
 
     let isPlaying = false;
 
-    // Load saved preference
+    // 1. Try immediate Auto-Play (Works on Desktop, rarely on Mobile)
     const savedMusicPref = localStorage.getItem('musicEnabled');
-    if (savedMusicPref === 'true') {
-        playMusic();
+    const shouldPlay = savedMusicPref === null || savedMusicPref === 'true'; // Default to TRUE
+
+    if (shouldPlay) {
+        bgMusic.play().then(() => {
+            isPlaying = true;
+            musicToggle.innerHTML = iconSoundOn;
+        }).catch(() => {
+            // Expected on mobile. Silent fail.
+            musicToggle.innerHTML = iconSoundOff;
+        });
+    } else {
+        musicToggle.innerHTML = iconSoundOff;
     }
 
-    musicToggle?.addEventListener('click', () => {
+    // 2. Aggressive "One-Tap Unlock" for Mobile
+    // If we want to play but couldn't, wait for ANY interaction
+    if (shouldPlay && !isPlaying) {
+        const unlockAudio = () => {
+            if (isPlaying) return; // Already successful
+
+            bgMusic.play().then(() => {
+                isPlaying = true;
+                musicToggle.innerHTML = iconSoundOn;
+                
+                // Cleanup listeners once successful
+                ['click', 'touchstart', 'scroll', 'keydown'].forEach(evt => 
+                    document.removeEventListener(evt, unlockAudio)
+                );
+            }).catch((err) => {
+                // Keep listening if this interaction failed (unlikely if it's a touch)
+            });
+        };
+
+        // Listen for everything
+        ['click', 'touchstart', 'scroll', 'keydown'].forEach(evt => 
+            document.addEventListener(evt, unlockAudio, { once: true, passive: true })
+        );
+    }
+
+    // 3. Manual Toggle Button
+    musicToggle.addEventListener('click', (e) => {
+        // e.preventDefault(); // Optional, depending on touch behavior
         if (isPlaying) {
-            pauseMusic();
+            bgMusic.pause();
+            isPlaying = false;
+            musicToggle.innerHTML = iconSoundOff;
+            localStorage.setItem('musicEnabled', 'false');
         } else {
-            playMusic();
+            bgMusic.play().then(() => {
+                isPlaying = true;
+                musicToggle.innerHTML = iconSoundOn;
+                localStorage.setItem('musicEnabled', 'true');
+            }).catch(err => {
+                showNotification("⚠️ Hãy chạm vào màn hình để bật nhạc!");
+            });
         }
     });
-
-    function playMusic() {
-        bgMusic?.play().then(() => {
-            isPlaying = true;
-            if (musicToggle) musicToggle.innerHTML = iconSoundOn;
-            localStorage.setItem('musicEnabled', 'true');
-        }).catch(err => {
-            console.log('Could not play music:', err);
-             // User interaction required policy might trigger this
-        });
-    }
-
-    function pauseMusic() {
-        bgMusic?.pause();
-        isPlaying = false;
-        if (musicToggle) musicToggle.innerHTML = iconSoundOff;
-        localStorage.setItem('musicEnabled', 'false');
-    }
 }
 
 // ===== DARK/LIGHT MODE TOGGLE =====

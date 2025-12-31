@@ -203,8 +203,9 @@ export function launchFireworks() {
     }
 
     function createParticles(x, y, color) {
-        const particleCount = 150; // MORE particles!
-        const isHeart = Math.random() < 0.5; // 50% chance of heart shape
+        const isMobileDevice = isMobile();
+        const particleCount = isMobileDevice ? 50 : 150; // Drastically reduce on mobile
+        const isHeart = !isMobileDevice && Math.random() < 0.5; // Disable complex heart shape on mobile
 
         if (isHeart) {
              for (let i = 0; i < particleCount; i++) {
