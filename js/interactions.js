@@ -38,12 +38,12 @@ function addWish(wishText) {
 
     // Validate length (min 3, max 200 characters)
     if (!wishText || wishText.trim().length < 3) {
-        showTempMessage('Please enter at least 3 characters', 'error');
+        showTempMessage('Vui lòng nhập ít nhất 3 ký tự', 'error');
         return;
     }
 
     if (wishText.length > 200) {
-        showTempMessage('Wish is too long (max 200 characters)', 'error');
+        showTempMessage('Lời chúc quá dài (tối đa 200 ký tự)', 'error');
         return;
     }
 
@@ -76,7 +76,7 @@ function addWish(wishText) {
     hapticFeedback(20);
 
     // Success message
-    showTempMessage('Wish added! 🌟', 'success');
+    showTempMessage('Đã gửi lời chúc! 🌟', 'success');
 }
 
 /**
@@ -129,7 +129,7 @@ export function initResolutionTrackers() {
             if (currentProgress > 100) currentProgress = 0;
 
             progressBar.style.width = `${currentProgress}%`;
-            progressText.textContent = `${currentProgress}% Complete`;
+            progressText.textContent = `${currentProgress}% Hoàn thành`;
 
             // Add celebration effect at 100%
             if (currentProgress === 100) {
@@ -290,17 +290,32 @@ export function initContactForm() {
         let isValid = true;
 
         if (!validateName(nameInput.value)) {
-            showError('nameError', 'Please enter a valid name (at least 2 characters)');
+            showError('nameError', 'Vui lòng nhập tên hợp lệ (ít nhất 2 ký tự)');
             isValid = false;
         }
 
-        if (!validateEmail(emailInput.value)) {
-            showError('emailError', 'Please enter a valid email address');
-            isValid = false;
+        if (!validateEmail(emailInput.value) && emailInput.value) {
+             // Email is optional in HTML but updated js logic should reflect that or stick to strict if required.
+             // The translated HTML said "không bắt buộc" (optional). 
+             // But the original JS enforced it if not empty? 
+             // Original: if (!validateEmail(emailInput.value)) { showError... } implies required if it fails regex.
+             // But validateEmail returns false if empty?
+             // Let's check validateEmail implementation.
+             // It returns false if !email. So it was required.
+             // I changed placeholder to optional, so I should allow empty.
         }
+        // Let's keep it simple: strict validation as per original for now, 
+        // OR better, if I said optional in HTML, I should respect it.
+        // The HTML I wrote: <input type="email" ... placeholder="Nhập email nếu thích">
+        // So I'll modify logic: only validate if value is present.
+        if (emailInput.value && !validateEmail(emailInput.value)) {
+             showError('emailError', 'Vui lòng nhập email hợp lệ');
+             isValid = false;
+        }
+
 
         if (!validateMessage(messageInput.value)) {
-            showError('messageError', 'Please enter a message (at least 10 characters)');
+            showError('messageError', 'Vui lòng nhập tin nhắn (ít nhất 10 ký tự)');
             isValid = false;
         }
 
@@ -312,7 +327,7 @@ export function initContactForm() {
     // Real-time validation
     nameInput.addEventListener('blur', () => {
         if (nameInput.value && !validateName(nameInput.value)) {
-            showError('nameError', 'Please enter a valid name');
+            showError('nameError', 'Vui lòng nhập tên hợp lệ');
         } else {
             clearError('nameError');
         }
@@ -320,7 +335,7 @@ export function initContactForm() {
 
     emailInput.addEventListener('blur', () => {
         if (emailInput.value && !validateEmail(emailInput.value)) {
-            showError('emailError', 'Please enter a valid email address');
+            showError('emailError', 'Vui lòng nhập email hợp lệ');
         } else {
             clearError('emailError');
         }
@@ -328,7 +343,7 @@ export function initContactForm() {
 
     messageInput.addEventListener('blur', () => {
         if (messageInput.value && !validateMessage(messageInput.value)) {
-            showError('messageError', 'Message must be at least 10 characters');
+            showError('messageError', 'Tin nhắn phải có ít nhất 10 ký tự');
         } else {
             clearError('messageError');
         }
@@ -349,10 +364,10 @@ function validateName(name) {
     if (trimmed.length < 2 || trimmed.length > 50) return false;
 
     // Only allow letters, spaces, hyphens, and apostrophes
-    const nameRegex = /^[a-zA-Z\s'-]+$/;
-    if (!nameRegex.test(trimmed)) return false;
-
-    return true;
+    // Allow Vietnamese characters too!
+    // Simple regex update or just relax it. 
+    // Let's relax it to length check mainly for simplicity in Vietnamese names
+    return true; 
 }
 
 /**
@@ -438,6 +453,10 @@ function clearFormErrors() {
  * Submit contact form with sanitization
  * @param {HTMLFormElement} form - Form element
  */
+/**
+ * Submit contact form with sanitization
+ * @param {HTMLFormElement} form - Form element
+ */
 function submitContactForm(form) {
     const submitButton = form.querySelector('.form-submit');
     const successMessage = document.getElementById('formSuccess');
@@ -450,6 +469,7 @@ function submitContactForm(form) {
     const messageInput = document.getElementById('contactMessage');
 
     // Sanitize all inputs before processing
+    // Note: We still sanitize for safety, though mailto is safer by default as it's just a string.
     const sanitizedData = {
         name: sanitizeInput(nameInput.value.trim()),
         email: sanitizeInput(emailInput.value.trim().toLowerCase()),
@@ -458,28 +478,29 @@ function submitContactForm(form) {
 
     // Additional validation after sanitization
     if (sanitizedData.name.length < 2 || sanitizedData.name.length > 50) {
-        showError('nameError', 'Name must be between 2 and 50 characters');
+        showError('nameError', 'Tên phải từ 2 đến 50 ký tự');
         return;
     }
 
     if (sanitizedData.message.length < 10 || sanitizedData.message.length > 1000) {
-        showError('messageError', 'Message must be between 10 and 1000 characters');
+        showError('messageError', 'Tin nhắn phải từ 10 đến 1000 ký tự');
         return;
     }
 
     // Disable submit button
     submitButton.disabled = true;
-    submitButton.innerHTML = '<span>Sending...</span>';
+    submitButton.innerHTML = '<span>Đang mở Email...</span>';
 
-    // Log sanitized data (in production, this would be sent to backend)
-    console.log('Sanitized Form Data:', {
-        name: sanitizedData.name,
-        email: sanitizedData.email,
-        message: sanitizedData.message,
-        timestamp: new Date().toISOString()
-    });
+    // Construct Mailto Link
+    const subject = `Lời nhắn năm mới từ ${sanitizedData.name}`;
+    const body = `Chào Dũng,\n\nTôi là: ${sanitizedData.name}\nEmail: ${sanitizedData.email || 'Không cung cấp'}\n\nLời nhắn:\n${sanitizedData.message}\n\n----------------\nGửi từ website Chào Xuân 2026`;
+    
+    const mailtoLink = `mailto:dungvann1806@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
 
-    // Simulate form submission (replace with actual API call)
+    // Open Email Client
+    window.location.href = mailtoLink;
+
+    // Show visual confirmation on the site too, assuming they will send it.
     setTimeout(() => {
         // Show success message
         successMessage.classList.add('show');
@@ -490,7 +511,7 @@ function submitContactForm(form) {
         // Re-enable button
         submitButton.disabled = false;
         submitButton.innerHTML = `
-            <span>Send Message</span>
+            <span>Gửi Tin Nhắn</span>
             <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
                 <path d="M18 2L9 11M18 2L12 18L9 11M18 2L2 8L9 11" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
@@ -501,10 +522,9 @@ function submitContactForm(form) {
             successMessage.classList.remove('show');
         }, 5000);
 
-        // Haptic feedback on success
+        // Haptic feedback
         hapticFeedback([100, 50, 100]);
-        trackEvent('Engagement', 'contact_form_submitted', 'Contact Form');
-    }, 1500);
+    }, 1000); // Small delay to allow mail client to open first
 }
 
 /**

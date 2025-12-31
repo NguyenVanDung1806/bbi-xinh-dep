@@ -56,9 +56,26 @@ export function startCelebration() {
         stopFireworks();
     } else {
         launchFireworks();
+        showStopButton();
     }
 }
 
+function showStopButton() {
+    let btn = document.getElementById('stopFireworksBtn');
+    if (!btn) {
+        btn = document.createElement('button');
+        btn.id = 'stopFireworksBtn';
+        btn.className = 'fireworks-stop-btn';
+        btn.textContent = '❌ Dừng Pháo Hoa';
+        btn.onclick = stopFireworks;
+        document.body.appendChild(btn);
+    }
+    btn.style.display = 'block';
+}
+
+/**
+ * Launch fireworks animation
+ */
 /**
  * Launch fireworks animation
  */
@@ -72,69 +89,95 @@ export function launchFireworks() {
     const fireworks = [];
     const particles = [];
 
+    // Romantic palette
+    const colors = ['#ff9a9e', '#fecfef', '#ff416c', '#ff4b2b', '#fa709a', '#fee140', '#ffffff'];
+
     class Firework {
         constructor() {
             this.x = Math.random() * canvas.width;
             this.y = canvas.height;
-            this.targetY = Math.random() * canvas.height * 0.4 + 100;
-            this.speed = 5 + Math.random() * 4;
-            this.color = getRandomColor();
+            this.targetY = Math.random() * (canvas.height * 0.5) + canvas.height * 0.1; // Higher explosions
+            this.speed = 8 + Math.random() * 5; // Faster launch
+            this.angle = -Math.PI / 2 + (Math.random() - 0.5) * 0.2; // Slight spread
+            this.vx = Math.cos(this.angle) * this.speed;
+            this.vy = Math.sin(this.angle) * this.speed;
+            this.color = colors[Math.floor(Math.random() * colors.length)];
             this.trail = [];
+            this.brightness = Math.random() * 50 + 50;
         }
 
         update() {
             // Add trail effect
             this.trail.push({ x: this.x, y: this.y });
-            if (this.trail.length > 10) this.trail.shift();
+            if (this.trail.length > 5) this.trail.shift();
 
-            this.y -= this.speed;
-            return this.y <= this.targetY;
+            // Gravity/Friction
+            this.vy += 0.05;
+            this.x += this.vx;
+            this.y += this.vy;
+
+            // Fade out trail
+            return this.vy >= 0 || this.y <= this.targetY;
         }
 
         draw() {
             // Draw trail
-            ctx.globalAlpha = 0.3;
-            for (let i = 0; i < this.trail.length; i++) {
-                const point = this.trail[i];
-                ctx.beginPath();
-                ctx.arc(point.x, point.y, 2, 0, Math.PI * 2);
-                ctx.fillStyle = this.color;
-                ctx.fill();
+            ctx.globalAlpha = 0.5;
+            ctx.beginPath();
+            if (this.trail.length > 0) {
+                ctx.moveTo(this.trail[0].x, this.trail[0].y);
+                for (let point of this.trail) {
+                    ctx.lineTo(point.x, point.y);
+                }
             }
+            ctx.strokeStyle = this.color;
+            ctx.lineWidth = 2;
+            ctx.stroke();
 
-            // Draw main firework
+            // Draw head
             ctx.globalAlpha = 1;
             ctx.beginPath();
-            ctx.arc(this.x, this.y, 4, 0, Math.PI * 2);
-            ctx.fillStyle = this.color;
-            ctx.shadowBlur = 10;
-            ctx.shadowColor = this.color;
+            ctx.arc(this.x, this.y, 3, 0, Math.PI * 2);
+            ctx.fillStyle = '#fff';
             ctx.fill();
-            ctx.shadowBlur = 0;
         }
     }
 
     class Particle {
-        constructor(x, y, color) {
+        constructor(x, y, color, type = 'circle') {
             this.x = x;
             this.y = y;
             this.color = color;
+            this.type = type;
+            
+            // Physics
             const angle = Math.random() * Math.PI * 2;
-            const speed = Math.random() * 6 + 2;
-            this.velocity = {
-                x: Math.cos(angle) * speed,
-                y: Math.sin(angle) * speed
-            };
+            const speed = Math.random() * 5 + 1; // Different speeds
+            
+            // Heart shape math if applicable, otherwise random circle
+            if (this.type === 'heart') {
+                // We'll calculate velocity based on heart shape in createParticles
+                this.vx = 0; 
+                this.vy = 0;
+            } else {
+                this.vx = Math.cos(angle) * speed;
+                this.vy = Math.sin(angle) * speed;
+            }
+
             this.alpha = 1;
-            this.decay = 0.015 + Math.random() * 0.01;
+            this.friction = 0.98; // Air resistance
+            this.gravity = 0.05;
+            this.decay = 0.008 + Math.random() * 0.01; // Slower fade
             this.size = Math.random() * 3 + 1;
+            this.flicker = Math.random() < 0.5;
         }
 
         update() {
-            this.velocity.y += 0.15; // Gravity
-            this.velocity.x *= 0.99; // Air resistance
-            this.x += this.velocity.x;
-            this.y += this.velocity.y;
+            this.vx *= this.friction;
+            this.vy *= this.friction;
+            this.vy += this.gravity;
+            this.x += this.vx;
+            this.y += this.vy;
             this.alpha -= this.decay;
         }
 
@@ -144,7 +187,15 @@ export function launchFireworks() {
             ctx.beginPath();
             ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
             ctx.fillStyle = this.color;
-            ctx.shadowBlur = 5;
+            
+            // Sparkle effect
+            if (this.flicker && Math.random() > 0.8) {
+                ctx.shadowBlur = 20;
+                ctx.fillStyle = '#fff';
+            } else {
+                ctx.shadowBlur = 5;
+            }
+            
             ctx.shadowColor = this.color;
             ctx.fill();
             ctx.restore();
@@ -152,29 +203,51 @@ export function launchFireworks() {
     }
 
     function createParticles(x, y, color) {
-        const particleCount = 80;
-        for (let i = 0; i < particleCount; i++) {
-            particles.push(new Particle(x, y, color));
+        const particleCount = 150; // MORE particles!
+        const isHeart = Math.random() < 0.5; // 50% chance of heart shape
+
+        if (isHeart) {
+             for (let i = 0; i < particleCount; i++) {
+                const p = new Particle(x, y, color, 'heart');
+                const angle = (Math.PI * 2 * i) / particleCount;
+                
+                // Heart formula
+                // x = 16sin^3(t)
+                // y = 13cos(t) - 5cos(2t) - 2cos(3t) - cos(4t)
+                // Invert Y for canvas
+                
+                const r = 2 + Math.random() * 2; // Radius/Scale spread
+                
+                const hx = 16 * Math.pow(Math.sin(angle), 3);
+                const hy = -(13 * Math.cos(angle) - 5 * Math.cos(2 * angle) - 2 * Math.cos(3 * angle) - Math.cos(4 * angle));
+                
+                p.vx = hx * (r / 20); // Scale down 
+                p.vy = hy * (r / 20);
+                
+                particles.push(p);
+             }
+        } else {
+            // Standard explosion
+            for (let i = 0; i < particleCount; i++) {
+                particles.push(new Particle(x, y, color, 'circle'));
+            }
         }
     }
 
     function animate() {
         if (!fireworksActive) {
-            // Clean up on stop
             ctx.clearRect(0, 0, canvas.width, canvas.height);
             return;
         }
 
-        // Fade effect for trails
-        ctx.fillStyle = 'rgba(10, 10, 15, 0.15)';
+        // Smoother trails
+        ctx.fillStyle = 'rgba(18, 5, 11, 0.2)'; // Dark romantic background fade
         ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-        // Launch new fireworks randomly
-        if (Math.random() < 0.08) {
+        if (Math.random() < 0.05) { // Launch frequency
             fireworks.push(new Firework());
         }
 
-        // Update and draw fireworks
         for (let i = fireworks.length - 1; i >= 0; i--) {
             fireworks[i].draw();
             if (fireworks[i].update()) {
@@ -183,7 +256,6 @@ export function launchFireworks() {
             }
         }
 
-        // Update and draw particles
         for (let i = particles.length - 1; i >= 0; i--) {
             particles[i].update();
             particles[i].draw();
@@ -207,6 +279,10 @@ export function stopFireworks() {
         cancelAnimationFrame(animationFrameId);
         animationFrameId = null;
     }
+
+    // Hide stop button
+    const btn = document.getElementById('stopFireworksBtn');
+    if (btn) btn.style.display = 'none';
 
     // Clear canvas
     const canvas = document.getElementById('fireworks');

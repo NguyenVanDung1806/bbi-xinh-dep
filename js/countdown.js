@@ -89,14 +89,14 @@ function showNewYearCelebration() {
 
     if (heroTitle) {
         heroTitle.innerHTML = `
-            <span class="year-new" style="font-size: 1.2em;">🎉 HAPPY 2026! 🎉</span>
+            <span class="year-new" style="font-size: 1.2em;">🎉 CHÚC MỪNG NĂM MỚI 2026! 🎉</span>
         `;
     }
 
     if (countdownDisplay) {
         countdownDisplay.innerHTML = `
             <h2 style="font-size: 3rem; text-align: center; width: 100%;">
-                🎊 Welcome to 2026! 🎊
+                🎊 Chào Năm Mới 2026! 🎊
             </h2>
         `;
     }

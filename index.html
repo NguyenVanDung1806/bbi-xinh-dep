@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
 
 <head>
     <meta charset="UTF-8">
@@ -9,8 +9,8 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="theme-color" content="#0a0a0f">
     <meta name="description"
-        content="Welcome 2026 with a stunning celebration! Join us for an unforgettable New Year experience with countdown, fireworks, and more.">
-    <title>Welcome 2026 - Happy New Year</title>
+        content="Chào đón năm 2026 rực rỡ! Cùng em đón khoảnh khắc giao thừa ý nghĩa với pháo hoa và những lời chúc tốt đẹp nhất.">
+    <title>Chào Xuân 2026 - Mừng Năm Mới Cùng Bbiiiii</title>
 
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="favicon/favicon.png">
@@ -37,8 +37,12 @@
     <nav class="navbar">
         <div class="nav-content">
             <div class="logo">
-                <span class="logo-icon">✨</span>
-                <span class="logo-text">New Year 2026</span>
+                <span class="logo-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"></path>
+                    </svg>
+                </span>
+                <span class="logo-text">Happy New Year Bbi</span>
             </div>
 
             <!-- Mobile Hamburger -->
@@ -49,24 +53,20 @@
             </button>
 
             <div class="nav-links" id="navLinks">
-                <a href="#home" class="nav-link active">Home</a>
-                <a href="#countdown" class="nav-link">Countdown</a>
-                <a href="#resolutions" class="nav-link">Resolutions</a>
-                <a href="#memories" class="nav-link">Memories</a>
-                <a href="#quotes" class="nav-link">Quotes</a>
-                <a href="pages/fortune.html" class="nav-link">🔮 Fortune</a>
-                <a href="pages/2025.html" class="nav-link">🚀 2025 Tech</a>
-                <a href="#contact" class="nav-link">Contact</a>
+                <a href="#home" class="nav-link active">Thế giới</a>
+                <a href="#countdown" class="nav-link">Đếm Ngược</a>
+                <a href="#resolutions" class="nav-link">Lời Hứa</a>
+                <a href="#memories" class="nav-link">Kỷ Niệm</a>
+                <a href="#quotes" class="nav-link">Lời Yêu</a>
             </div>
 
             <div class="nav-controls">
-                <button class="control-btn music-toggle" id="musicToggle" aria-label="Toggle music"
-                    title="Toggle Music">
-                    <span class="music-icon">🔇</span>
-                </button>
-                <button class="control-btn theme-toggle" id="themeToggle" aria-label="Toggle theme"
-                    title="Toggle Theme">
-                    <span class="theme-icon">🌙</span>
+                <button class="control-btn music-toggle" id="musicToggle" aria-label="Toggle music" title="Bật/Tắt Nhạc">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                        <line x1="23" y1="9" x2="17" y2="15"></line>
+                        <line x1="17" y1="9" x2="23" y2="15"></line>
+                    </svg>
                 </button>
             </div>
         </div>
@@ -74,44 +74,43 @@
 
     <!-- Background Music -->
     <audio id="bgMusic" loop>
-        <source src="https://assets.mixkit.co/music/preview/mixkit-happy-new-year-387.mp3" type="audio/mpeg">
+        <source src="music/nguyen_lam.mp3" type="audio/mpeg">
     </audio>
 
     <!-- Hero Section -->
     <section id="home" class="hero">
         <div class="hero-content">
             <div class="hero-badge">
-                <span class="badge-shimmer">✨ New Year Special ✨</span>
+                <span class="badge-shimmer">✨ Đặc Biệt Cho Năm Mới ✨</span>
             </div>
             <h1 class="hero-title">
                 <span class="year-old" id="yearOld">2025</span>
                 <span class="arrow">→</span>
                 <span class="year-new" id="yearNew">2026</span>
             </h1>
-            <p class="hero-subtitle">A Journey to New Beginnings</p>
+            <p class="hero-subtitle">Hành Trình Mới Cùng Em</p>
             <div class="hero-description">
-                <p>Celebrate the magic of new beginnings as we bid farewell to 2025 and embrace the endless
-                    possibilities of 2026.</p>
+                <p>Khép lại năm 2025 với biết bao kỷ niệm, và cùng mở ra năm 2026 với vô vàn yêu thương và hạnh phúc bên bbiiii.</p>
             </div>
             <div class="cta-buttons">
                 <div class="cta-row">
                     <button class="btn btn-primary" onclick="scrollToSection('countdown')">
-                        <span>View Countdown</span>
+                        <span>Đếm Ngược</span>
                         <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
                             <path d="M7.5 15L12.5 10L7.5 5" stroke="currentColor" stroke-width="2"
                                 stroke-linecap="round" stroke-linejoin="round" />
                         </svg>
                     </button>
                     <button class="btn btn-secondary" onclick="startCelebration()">
-                        <span>Start Fireworks</span>
-                        <span class="sparkle">🎆</span>
-                    </button>
-                </div>
-                <div class="cta-row cta-row-center">
-                    <button class="btn btn-tech" onclick="visitTo2025Tech()">
-                        <span class="tech-icon">🚀</span>
-                        <span>Visit 2025 Tech</span>
-                        <span class="tech-countdown" id="techCountdown">3</span>
+                        <span>Bắn Pháo Hoa</span>
+                        <span class="sparkle">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"></path>
+                                <path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"></path>
+                                <path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"></path>
+                                <path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"></path>
+                            </svg>
+                        </span>
                     </button>
                 </div>
             </div>
@@ -130,8 +129,8 @@
     <section id="countdown" class="countdown-section">
         <div class="container">
             <div class="section-header">
-                <h2 class="section-title">Countdown to 2026</h2>
-                <p class="section-subtitle">Every second brings us closer to a new chapter</p>
+                <h2 class="section-title">Đếm Ngược Đến Giao Thừa</h2>
+                <p class="section-subtitle">Từng giây phút trôi qua đều trân quý</p>
             </div>
 
             <div class="countdown-display">
@@ -140,7 +139,7 @@
                         <div class="countdown-value" id="days">00</div>
                         <div class="countdown-ring"></div>
                     </div>
-                    <div class="countdown-label">Days</div>
+                    <div class="countdown-label">Ngày</div>
                 </div>
                 <div class="countdown-separator">:</div>
                 <div class="countdown-item">
@@ -148,7 +147,7 @@
                         <div class="countdown-value" id="hours">00</div>
                         <div class="countdown-ring"></div>
                     </div>
-                    <div class="countdown-label">Hours</div>
+                    <div class="countdown-label">Giờ</div>
                 </div>
                 <div class="countdown-separator">:</div>
                 <div class="countdown-item">
@@ -156,7 +155,7 @@
                         <div class="countdown-value" id="minutes">00</div>
                         <div class="countdown-ring"></div>
                     </div>
-                    <div class="countdown-label">Minutes</div>
+                    <div class="countdown-label">Phút</div>
                 </div>
                 <div class="countdown-separator">:</div>
                 <div class="countdown-item">
@@ -164,13 +163,13 @@
                         <div class="countdown-value" id="seconds">00</div>
                         <div class="countdown-ring"></div>
                     </div>
-                    <div class="countdown-label">Seconds</div>
+                    <div class="countdown-label">Giây</div>
                 </div>
             </div>
 
             <div class="progress-bar">
                 <div class="progress-fill" id="yearProgress"></div>
-                <div class="progress-label">Year Progress: <span id="progressPercent">0%</span></div>
+                <div class="progress-label">Năm 2025 đã qua: <span id="progressPercent">0%</span></div>
             </div>
         </div>
     </section>
@@ -179,29 +178,50 @@
     <section id="celebration" class="celebration-section">
         <div class="container">
             <div class="section-header">
-                <h2 class="section-title">2026 Goals & Dreams</h2>
-                <p class="section-subtitle">What will you achieve in the new year?</p>
+                <h2 class="section-title">Ước Mơ Của Chúng Mình</h2>
+                <p class="section-subtitle">Những điều anh muốn thực hiện cùng em</p>
             </div>
 
             <div class="cards-grid">
                 <div class="feature-card">
-                    <div class="card-icon">🎯</div>
-                    <h3 class="card-title">Set Goals</h3>
-                    <p class="card-description">Define your aspirations and create a roadmap to success in 2026.</p>
+                    <div class="card-icon">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <circle cx="12" cy="12" r="6"></circle>
+                            <circle cx="12" cy="12" r="2"></circle>
+                        </svg>
+                    </div>
+                    <h3 class="card-title">Cùng Đặt Mục Tiêu Cho Tương Lai</h3>
+                    <p class="card-description">Xây dựng tương lai và thực hiện những dự định ấp ủ cùng nhau.</p>
                     <div class="card-shine"></div>
                 </div>
 
                 <div class="feature-card">
-                    <div class="card-icon">🚀</div>
-                    <h3 class="card-title">Take Action</h3>
-                    <p class="card-description">Turn your dreams into reality with consistent effort and dedication.</p>
+                    <div class="card-icon">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"></path>
+                            <path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"></path>
+                            <path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"></path>
+                            <path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"></path>
+                        </svg>
+                    </div>
+                    <h3 class="card-title">Cùng đi cùng nhau những năm tới</h3>
+                    <p class="card-description">Biến ước mơ thành hiện thực bằng nỗ lực của cả hai chúng ta.</p>
                     <div class="card-shine"></div>
                 </div>
 
                 <div class="feature-card">
-                    <div class="card-icon">💫</div>
-                    <h3 class="card-title">Achieve Success</h3>
-                    <p class="card-description">Celebrate your victories and learn from every experience.</p>
+                    <div class="card-icon">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M19 14c1.49-1.28 3.6-1.28 5.09 0 1.49 1.28 1.49 3.36 0 4.63-1.49 1.28-3.6 1.28-5.09 0-1.49-1.28-1.49-3.36 0-4.63z"></path>
+                            <path d="M24 12V2H0v12h5"></path>
+                            <path d="M12 15a3 3 0 0 1-3-3"></path>
+                            <path d="M15 12a3 3 0 0 1-3 3"></path>
+                             <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="card-title">Cùng Hạnh Phúc</h3>
+                    <p class="card-description">Mỗi ngày bên em đều là một ngày thành công và đáng nhớ.</p>
                     <div class="card-shine"></div>
                 </div>
             </div>
@@ -209,15 +229,15 @@
             <div class="stats-container">
                 <div class="stat-item">
                     <div class="stat-value" data-target="365">0</div>
-                    <div class="stat-label">Days of Opportunity</div>
+                    <div class="stat-label">Ngày Yêu Thương</div>
                 </div>
                 <div class="stat-item">
                     <div class="stat-value" data-target="8760">0</div>
-                    <div class="stat-label">Hours to Excel</div>
+                    <div class="stat-label">Giờ Nhớ Nhung</div>
                 </div>
                 <div class="stat-item">
                     <div class="stat-value" data-target="525600">0</div>
-                    <div class="stat-label">Minutes to Shine</div>
+                    <div class="stat-label">Phút Hạnh Phúc</div>
                 </div>
             </div>
         </div>
@@ -227,15 +247,15 @@
     <section id="wishes" class="wishes-section">
         <div class="container">
             <div class="section-header">
-                <h2 class="section-title">New Year Wishes</h2>
-                <p class="section-subtitle">Share your hopes and dreams for 2026</p>
+                <h2 class="section-title">Điều Ước Năm Mới</h2>
+                <p class="section-subtitle">Chia sẻ hy vọng và ước mơ của em cho năm 2026</p>
             </div>
 
             <div class="wishes-input-container">
                 <div class="wish-input-wrapper">
-                    <input type="text" id="wishInput" class="wish-input" placeholder="Write your wish for 2026...">
+                    <input type="text" id="wishInput" class="wish-input" placeholder="Viết điều ước của em cho năm 2026...">
                     <button class="wish-submit" id="submitWish">
-                        <span>Make a Wish</span>
+                        <span>Gửi Điều Ước</span>
                         <span class="wish-icon">⭐</span>
                     </button>
                 </div>
@@ -243,13 +263,13 @@
 
             <div class="wishes-display" id="wishesDisplay">
                 <div class="wish-card">
-                    <div class="wish-content">🌟 May 2026 bring you health, happiness, and success!</div>
+                    <div class="wish-content">🌟 Chúc em năm mới luôn xinh đẹp và hạnh phúc!</div>
                 </div>
                 <div class="wish-card">
-                    <div class="wish-content">✨ Wishing you a year filled with joy and prosperity!</div>
+                    <div class="wish-content">✨ Mong cho tình yêu của chúng mình ngày càng bền chặt!</div>
                 </div>
                 <div class="wish-card">
-                    <div class="wish-content">🎊 Here's to new adventures and beautiful memories in 2026!</div>
+                    <div class="wish-content">🎊 Cùng nhau đi thật xa và tạo nhiều kỷ niệm đẹp trong 2026!</div>
                 </div>
             </div>
         </div>
@@ -259,83 +279,114 @@
     <section id="resolutions" class="resolutions-section">
         <div class="container">
             <div class="section-header">
-                <h2 class="section-title">2026 Resolutions</h2>
-                <p class="section-subtitle">Set your goals and track your progress</p>
+                <h2 class="section-title">Lời Hứa Năm Mới</h2>
+                <p class="section-subtitle">Mục tiêu phấn đấu của đôi ta</p>
                 <button class="btn btn-secondary random-resolution-btn" onclick="generateRandomResolution()">
-                    <span>🎲 Get Random Resolution Idea</span>
+                    <span>🎲 Gợi Ý Mục Tiêu Ngẫu Nhiên</span>
                 </button>
             </div>
 
             <div class="resolutions-grid">
                 <div class="resolution-card">
-                    <div class="resolution-icon">💪</div>
-                    <h3 class="resolution-title">Health & Fitness</h3>
-                    <p class="resolution-desc">Stay active, eat healthy, and prioritize wellness</p>
+                    <div class="resolution-icon">
+                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                             <path d="M18.3 1.7a2.5 2.5 0 0 1 3.5 3.5l-6 6a2.5 2.5 0 0 1-3.5-3.5l6-6zM8 12l5-5"></path>
+                             <path d="M2 22h20"></path>
+                             <path d="m9 12 5.6 5.6a2.5 2.5 0 0 1-3.5 3.5l-6-6A2.5 2.5 0 0 1 8.7 12z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="resolution-title">Sức Khỏe & Vóc Dáng</h3>
+                    <p class="resolution-desc">Cùng nhau tập luyện và ăn uống healthy nhé</p>
                     <div class="resolution-progress">
                         <div class="progress-tracker">
                             <div class="progress-bar-fill" style="width: 0%"></div>
                         </div>
-                        <span class="progress-text">0% Complete</span>
+                        <span class="progress-text">0% Hoàn thành</span>
                     </div>
                 </div>
 
                 <div class="resolution-card">
-                    <div class="resolution-icon">📚</div>
-                    <h3 class="resolution-title">Learn & Grow</h3>
-                    <p class="resolution-desc">Read more books and acquire new skills</p>
+                    <div class="resolution-icon">
+                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
+                            <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="resolution-title">Học Hỏi & Phát Triển</h3>
+                    <p class="resolution-desc">Cùng nhau học thêm điều mới mỗi ngày</p>
                     <div class="resolution-progress">
                         <div class="progress-tracker">
                             <div class="progress-bar-fill" style="width: 0%"></div>
                         </div>
-                        <span class="progress-text">0% Complete</span>
+                        <span class="progress-text">0% Hoàn thành</span>
                     </div>
                 </div>
 
                 <div class="resolution-card">
-                    <div class="resolution-icon">💼</div>
-                    <h3 class="resolution-title">Career Goals</h3>
-                    <p class="resolution-desc">Advance your career and achieve milestones</p>
+                    <div class="resolution-icon">
+                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
+                            <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
+                        </svg>
+                    </div>
+                    <h3 class="resolution-title">Sự Nghiệp</h3>
+                    <p class="resolution-desc">Ủng hộ nhau thăng tiến trong công việc</p>
                     <div class="resolution-progress">
                         <div class="progress-tracker">
                             <div class="progress-bar-fill" style="width: 0%"></div>
                         </div>
-                        <span class="progress-text">0% Complete</span>
+                        <span class="progress-text">0% Hoàn thành</span>
                     </div>
                 </div>
 
                 <div class="resolution-card">
-                    <div class="resolution-icon">❤️</div>
-                    <h3 class="resolution-title">Relationships</h3>
-                    <p class="resolution-desc">Strengthen bonds with family and friends</p>
+                    <div class="resolution-icon">
+                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="resolution-title">Tình Yêu</h3>
+                    <p class="resolution-desc">Dành nhiều thời gian chất lượng cho nhau hơn</p>
                     <div class="resolution-progress">
                         <div class="progress-tracker">
                             <div class="progress-bar-fill" style="width: 0%"></div>
                         </div>
-                        <span class="progress-text">0% Complete</span>
+                        <span class="progress-text">0% Hoàn thành</span>
                     </div>
                 </div>
 
                 <div class="resolution-card">
-                    <div class="resolution-icon">💰</div>
-                    <h3 class="resolution-title">Financial Freedom</h3>
-                    <p class="resolution-desc">Save more, invest wisely, and build wealth</p>
+                    <div class="resolution-icon">
+                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="12" y1="1" x2="12" y2="23"></line>
+                            <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+                        </svg>
+                    </div>
+                    <h3 class="resolution-title">Tài Chính</h3>
+                    <p class="resolution-desc">Tiết kiệm cho những chuyến đi tương lai</p>
                     <div class="resolution-progress">
                         <div class="progress-tracker">
                             <div class="progress-bar-fill" style="width: 0%"></div>
                         </div>
-                        <span class="progress-text">0% Complete</span>
+                        <span class="progress-text">0% Hoàn thành</span>
                     </div>
                 </div>
 
                 <div class="resolution-card">
-                    <div class="resolution-icon">🌍</div>
-                    <h3 class="resolution-title">Travel & Adventure</h3>
-                    <p class="resolution-desc">Explore new places and create memories</p>
+                    <div class="resolution-icon">
+                         <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <path d="M2 12h20"></path>
+                            <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="resolution-title">Du Lịch & Trải Nghiệm</h3>
+                    <p class="resolution-desc">Cùng nhau khám phá những vùng đất mới</p>
                     <div class="resolution-progress">
                         <div class="progress-tracker">
                             <div class="progress-bar-fill" style="width: 0%"></div>
                         </div>
-                        <span class="progress-text">0% Complete</span>
+                        <span class="progress-text">0% Hoàn thành</span>
                     </div>
                 </div>
             </div>
@@ -346,48 +397,80 @@
     <section id="memories" class="memories-section">
         <div class="container">
             <div class="section-header">
-                <h2 class="section-title">Memories of 2025</h2>
-                <p class="section-subtitle">Cherishing the moments that made this year special</p>
+                <h2 class="section-title">Kỷ Niệm 2025</h2>
+                <p class="section-subtitle">Lưu giữ những khoảnh khắc đẹp nhất của chúng mình</p>
             </div>
 
             <div class="memories-gallery">
                 <div class="memory-card" style="--delay: 0s">
-                    <div class="memory-month">January</div>
+                    <div class="memory-month">Tháng 1</div>
                     <div class="memory-content">
-                        <div class="memory-emoji">🎯</div>
-                        <p class="memory-text">Started the year with ambitious goals and determination</p>
+                        <div class="memory-emoji">
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                            </svg>
+                        </div>
+                        <p class="memory-text">Khởi đầu năm mới với bao dự định cùng em</p>
                     </div>
                 </div>
 
                 <div class="memory-card" style="--delay: 0.1s">
-                    <div class="memory-month">March</div>
+                    <div class="memory-month">Tháng 3</div>
                     <div class="memory-content">
-                        <div class="memory-emoji">🌸</div>
-                        <p class="memory-text">Embraced new beginnings and fresh opportunities</p>
+                        <div class="memory-emoji">
+                             <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"></path>
+                            </svg>
+                        </div>
+                        <p class="memory-text">Những buổi hẹn hò lãng mạn mùa xuân</p>
                     </div>
                 </div>
 
                 <div class="memory-card" style="--delay: 0.2s">
-                    <div class="memory-month">June</div>
+                    <div class="memory-month">Tháng 6</div>
                     <div class="memory-content">
-                        <div class="memory-emoji">☀️</div>
-                        <p class="memory-text">Summer adventures and unforgettable experiences</p>
+                        <div class="memory-emoji">
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="12" cy="12" r="5"></circle>
+                                <path d="M12 1v2"></path>
+                                <path d="M12 21v2"></path>
+                                <path d="M4.22 4.22l1.42 1.42"></path>
+                                <path d="M18.36 18.36l1.42 1.42"></path>
+                                <path d="M1 12h2"></path>
+                                <path d="M21 12h2"></path>
+                                <path d="M4.22 19.78l1.42-1.42"></path>
+                                <path d="M18.36 5.64l1.42-1.42"></path>
+                            </svg>
+                        </div>
+                        <p class="memory-text">Chuyến đi mùa hè rực rỡ nắng vàng</p>
                     </div>
                 </div>
 
                 <div class="memory-card" style="--delay: 0.3s">
-                    <div class="memory-month">September</div>
+                    <div class="memory-month">Tháng 9</div>
                     <div class="memory-content">
-                        <div class="memory-emoji">🍂</div>
-                        <p class="memory-text">Achieved milestones and celebrated victories</p>
+                        <div class="memory-emoji">
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"></path>
+                                <path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"></path>
+                            </svg>
+                        </div>
+                        <p class="memory-text">Cùng đón mùa thu nhẹ nhàng và bình yên</p>
                     </div>
                 </div>
 
                 <div class="memory-card" style="--delay: 0.4s">
-                    <div class="memory-month">December</div>
+                    <div class="memory-month">Tháng 12</div>
                     <div class="memory-content">
-                        <div class="memory-emoji">🎄</div>
-                        <p class="memory-text">Reflecting on growth and preparing for 2026</p>
+                        <div class="memory-emoji">
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M19 14c1.49-1.28 3.6-1.28 5.09 0 1.49 1.28 1.49 3.36 0 4.63-1.49 1.28-3.6 1.28-5.09 0-1.49-1.28-1.49-3.36 0-4.63z"></path>
+                                <path d="M24 12V2H0v12h5"></path>
+                                <path d="M12 15a3 3 0 0 1-3-3"></path>
+                                <path d="M15 12a3 3 0 0 1-3 3"></path>
+                            </svg>
+                        </div>
+                        <p class="memory-text">Háo hức chờ đón năm mới sang trang</p>
                     </div>
                 </div>
             </div>
@@ -398,33 +481,33 @@
     <section id="quotes" class="quotes-section">
         <div class="container">
             <div class="section-header">
-                <h2 class="section-title">Inspirational Quotes</h2>
-                <p class="section-subtitle">Words of wisdom for the new year</p>
+                <h2 class="section-title">Lời Yêu Thương</h2>
+                <p class="section-subtitle">Gửi gắm tâm tình đến em</p>
             </div>
 
             <div class="quotes-carousel">
                 <div class="quote-card active">
                     <div class="quote-mark">"</div>
-                    <p class="quote-text">Your future is created by what you do today, not tomorrow.</p>
-                    <p class="quote-author">— Robert Kiyosaki</p>
+                    <p class="quote-text">Tương lai của anh được tạo nên bởi em - người luôn bên cạnh anh hôm nay và mãi mãi.</p>
+                    <p class="quote-author">— Gửi em yêu</p>
                 </div>
 
                 <div class="quote-card">
                     <div class="quote-mark">"</div>
-                    <p class="quote-text">The best time for new beginnings is now.</p>
-                    <p class="quote-author">— Unknown</p>
+                    <p class="quote-text">Khoảnh khắc đẹp nhất không phải là giao thừa, mà là được ngắm nhìn nụ cười của em.</p>
+                    <p class="quote-author">— Yêu em</p>
                 </div>
 
                 <div class="quote-card">
                     <div class="quote-mark">"</div>
-                    <p class="quote-text">New year, new opportunities, new adventures, new you!</p>
-                    <p class="quote-author">— Unknown</p>
+                    <p class="quote-text">Năm mới, hành trình mới, nhưng tình yêu anh dành cho em vẫn vẹn nguyên như ngày đầu.</p>
+                    <p class="quote-author">— Mãi bên nhau</p>
                 </div>
 
                 <div class="quote-card">
                     <div class="quote-mark">"</div>
-                    <p class="quote-text">Tomorrow is the first blank page of a 365 page book. Write a good one.</p>
-                    <p class="quote-author">— Brad Paisley</p>
+                    <p class="quote-text">Ngày mai là trang giấy trắng đầu tiên của cuốn sách 365 trang. Hãy cùng anh viết nên câu chuyện tình yêu đẹp nhất nhé.</p>
+                    <p class="quote-author">— Love you</p>
                 </div>
             </div>
 
@@ -450,44 +533,44 @@
     <section id="timeline" class="timeline-section">
         <div class="container">
             <div class="section-header">
-                <h2 class="section-title">2026 Timeline</h2>
-                <p class="section-subtitle">Mark your calendar for an amazing year ahead</p>
+                <h2 class="section-title">Hành Trình 2026</h2>
+                <p class="section-subtitle">Đánh dấu những cột mốc tuyệt vời phía trước</p>
             </div>
 
             <div class="timeline">
                 <div class="timeline-item">
                     <div class="timeline-dot"></div>
                     <div class="timeline-content">
-                        <div class="timeline-date">January 1</div>
-                        <h3 class="timeline-title">New Year Begins!</h3>
-                        <p class="timeline-desc">Welcome 2026 with joy and excitement</p>
+                        <div class="timeline-date">1 Tháng 1</div>
+                        <h3 class="timeline-title">Khởi Đầu Mới!</h3>
+                        <p class="timeline-desc">Chào đón năm 2026 với nụ cười của em</p>
                     </div>
                 </div>
 
                 <div class="timeline-item">
                     <div class="timeline-dot"></div>
                     <div class="timeline-content">
-                        <div class="timeline-date">Q1 2026</div>
-                        <h3 class="timeline-title">First Quarter Goals</h3>
-                        <p class="timeline-desc">Set the foundation for success</p>
+                        <div class="timeline-date">Quý 1 2026</div>
+                        <h3 class="timeline-title">Mục Tiêu Đầu Năm</h3>
+                        <p class="timeline-desc">Cùng nhau thực hiện những chuyến đi ngắn</p>
                     </div>
                 </div>
 
                 <div class="timeline-item">
                     <div class="timeline-dot"></div>
                     <div class="timeline-content">
-                        <div class="timeline-date">Mid-Year</div>
-                        <h3 class="timeline-title">Progress Review</h3>
-                        <p class="timeline-desc">Evaluate achievements and adjust goals</p>
+                        <div class="timeline-date">Giữa Năm</div>
+                        <h3 class="timeline-title">Nhìn Lại Chặng Đường</h3>
+                        <p class="timeline-desc">Ăn mừng những gì chúng ta đã đạt được</p>
                     </div>
                 </div>
 
                 <div class="timeline-item">
                     <div class="timeline-dot"></div>
                     <div class="timeline-content">
-                        <div class="timeline-date">Q4 2026</div>
-                        <h3 class="timeline-title">Year-End Celebration</h3>
-                        <p class="timeline-desc">Celebrate accomplishments and plan ahead</p>
+                        <div class="timeline-date">Cuối Năm 2026</div>
+                        <h3 class="timeline-title">Tổng Kết Năm</h3>
+                        <p class="timeline-desc">Chuẩn bị cho một mùa lễ hội ấm áp bên nhau</p>
                     </div>
                 </div>
             </div>
@@ -498,39 +581,52 @@
     <section id="contact" class="contact-section">
         <div class="container">
             <div class="section-header">
-                <h2 class="section-title">Get In Touch</h2>
-                <p class="section-subtitle">Have questions or want to share your New Year story? We'd love to hear from
-                    you!</p>
+                <h2 class="section-title">Nhắn Gửi Yêu Thương</h2>
+                <p class="section-subtitle">Em có muốn nhắn nhủ điều gì cho anh không?</p>
             </div>
 
             <div class="contact-container">
                 <div class="contact-info">
-                    <h3 class="contact-info-title">Let's Connect</h3>
-                    <p class="contact-info-desc">Share your New Year wishes, suggestions, or just say hello! We're here
-                        to make 2026 amazing together.</p>
+                    <h3 class="contact-info-title">Kết Nối Yêu Thương</h3>
+                    <p class="contact-info-desc">Chia sẻ những mong muốn, lời chúc hay đơn giản là một lời chào. Anh luôn lắng nghe em.</p>
 
                     <div class="contact-details">
                         <div class="contact-detail-item">
-                            <div class="contact-icon">📧</div>
+                            <div class="contact-icon">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                                    <polyline points="22,6 12,13 2,6"></polyline>
+                                </svg>
+                            </div>
                             <div class="contact-detail-text">
                                 <h4>Email</h4>
-                                <p>srijansah11@outlook.com</p>
+                                <p>dungvann1806@gmail.com</p>
                             </div>
                         </div>
 
                         <div class="contact-detail-item">
-                            <div class="contact-icon">🌐</div>
+                            <div class="contact-icon">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                                </svg>
+                            </div>
                             <div class="contact-detail-text">
-                                <h4>Social Media</h4>
-                                <p>#NewYear2026</p>
+                                <h4>I love uuuu bbiiiii</h4>
+                                <p>#Love2026</p>
                             </div>
                         </div>
 
                         <div class="contact-detail-item">
-                            <div class="contact-icon">⏰</div>
+                            <div class="contact-icon">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <circle cx="12" cy="12" r="10"></circle>
+                                    <polyline points="12 6 12 12 16 14"></polyline>
+                                </svg>
+                            </div>
                             <div class="contact-detail-text">
-                                <h4>Response Time</h4>
-                                <p>Within 24 hours</p>
+                                <h4>Bbi năm mới thật xinh đẹp
+                                </h4>
+                                <p>Ngay lúc này rất nhớ bbi</p>
                             </div>
                         </div>
                     </div>
@@ -539,28 +635,28 @@
                 <div class="contact-form-wrapper">
                     <form class="contact-form" id="contactForm">
                         <div class="form-group">
-                            <label for="contactName" class="form-label">Your Name</label>
+                            <label for="contactName" class="form-label">Tên của em</label>
                             <input type="text" id="contactName" name="name" class="form-input"
-                                placeholder="Enter your name" required>
+                                placeholder="Nhập tên em nè" required>
                             <span class="form-error" id="nameError"></span>
                         </div>
 
                         <div class="form-group">
-                            <label for="contactEmail" class="form-label">Email Address</label>
+                            <label for="contactEmail" class="form-label">Email (không bắt buộc)</label>
                             <input type="email" id="contactEmail" name="email" class="form-input"
-                                placeholder="Enter your email" required>
+                                placeholder="Nhập email nếu thích">
                             <span class="form-error" id="emailError"></span>
                         </div>
 
                         <div class="form-group">
-                            <label for="contactMessage" class="form-label">Your Message</label>
+                            <label for="contactMessage" class="form-label">Lời nhắn</label>
                             <textarea id="contactMessage" name="message" class="form-textarea"
-                                placeholder="Share your thoughts, wishes, or questions..." rows="5" required></textarea>
+                                placeholder="Em muốn nói gì với anh nào..." rows="5" required></textarea>
                             <span class="form-error" id="messageError"></span>
                         </div>
 
                         <button type="submit" class="btn btn-primary form-submit">
-                            <span>Send Message</span>
+                            <span>Gửi Tin Nhắn</span>
                             <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
                                 <path d="M18 2L9 11M18 2L12 18L9 11M18 2L2 8L9 11" stroke="currentColor"
                                     stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
@@ -569,7 +665,7 @@
 
                         <div class="form-success" id="formSuccess">
                             <div class="success-icon">✓</div>
-                            <p>Thank you! Your message has been sent successfully.</p>
+                            <p>Cảm ơn em! Tin nhắn đã được gửi đến trái tim anh.</p>
                         </div>
                     </form>
                 </div>
@@ -588,8 +684,12 @@
     <!-- Watermark -->
     <div class="watermark">
         <div class="watermark-content">
-            <span class="watermark-icon">✨</span>
-            <span class="watermark-text">created by <span class="watermark-author">srijan-xi</span></span>
+            <span class="watermark-icon">
+                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                </svg>
+            </span>
+            <span class="watermark-text">Dành tặng cho <span class="watermark-author">Em Yêu</span></span>
         </div>
     </div>
 
@@ -597,8 +697,8 @@
     <footer class="footer">
         <div class="footer-content">
             <div class="footer-text">
-                <p class="footer-main">Happy New Year 2026!</p>
-                <p class="footer-sub">May this year bring you endless joy and success</p>
+                <p class="footer-main">Chúc Mừng Năm Mới 2026!</p>
+                <p class="footer-sub">Mong năm mới mang đến cho em niềm vui và hạnh phúc bất tận</p>
             </div>
             <div class="footer-social">
                 <div class="social-icon">🎉</div>
@@ -608,8 +708,8 @@
             </div>
         </div>
         <div class="footer-bottom">
-            <p>&copy; 2026 New Year Celebration. Made with ❤️ and ✨ by <span class="footer-author"><a
-                        href="https://srijanxi.netlify.app/">srijan-xi</a></span></p>
+            <p>&copy; 2026 Chào Năm Mới. Làm với ❤️ bởi <span class="footer-author"><a
+                        href="#">Anh</a></span></p>
         </div>
     </footer>
 

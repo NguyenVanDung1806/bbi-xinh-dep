@@ -33,10 +33,14 @@ export function initMobileMenu() {
 }
 
 // ===== BACKGROUND MUSIC TOGGLE =====
+// ===== BACKGROUND MUSIC TOGGLE =====
 export function initMusicToggle() {
     const musicToggle = document.getElementById('musicToggle');
     const bgMusic = document.getElementById('bgMusic');
-    const musicIcon = musicToggle?.querySelector('.music-icon');
+    
+    // SVGs
+    const iconSoundOn = `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path></svg>`;
+    const iconSoundOff = `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><line x1="23" y1="9" x2="17" y2="15"></line><line x1="17" y1="9" x2="23" y2="15"></line></svg>`;
 
     let isPlaying = false;
 
@@ -57,17 +61,18 @@ export function initMusicToggle() {
     function playMusic() {
         bgMusic?.play().then(() => {
             isPlaying = true;
-            if (musicIcon) musicIcon.textContent = '🔊';
+            if (musicToggle) musicToggle.innerHTML = iconSoundOn;
             localStorage.setItem('musicEnabled', 'true');
         }).catch(err => {
             console.log('Could not play music:', err);
+             // User interaction required policy might trigger this
         });
     }
 
     function pauseMusic() {
         bgMusic?.pause();
         isPlaying = false;
-        if (musicIcon) musicIcon.textContent = '🔇';
+        if (musicToggle) musicToggle.innerHTML = iconSoundOff;
         localStorage.setItem('musicEnabled', 'false');
     }
 }
@@ -150,7 +155,7 @@ export function initWishesStorage() {
         }
 
         // Show success message
-        showNotification('✨ Your wish has been saved!');
+        showNotification('✨ Điều ước đã được lưu lại!');
     }
 
     function loadWishes() {
@@ -231,7 +236,7 @@ export function initResolutionsStorage() {
             const value = progress[index] || 0;
 
             if (progressBar) progressBar.style.width = `${value}%`;
-            if (progressText) progressText.textContent = `${value}% Complete`;
+            if (progressText) progressText.textContent = `${value}% Hoàn thành`;
         });
     }
 
@@ -247,7 +252,7 @@ export function initResolutionsStorage() {
 
         // Update UI
         if (progressBar) progressBar.style.width = `${current}%`;
-        if (progressText) progressText.textContent = `${current}% Complete`;
+        if (progressText) progressText.textContent = `${current}% Hoàn thành`;
 
         // Confetti at milestones
         if (current === 50 || current === 100) {
@@ -258,7 +263,7 @@ export function initResolutionsStorage() {
                     origin: { y: 0.6 }
                 });
             }
-            showNotification(current === 100 ? '🎉 Resolution Complete!' : '🌟 Halfway there!');
+            showNotification(current === 100 ? '🎉 Tuyệt vời! Mục tiêu hoàn thành!' : '🌟 Cố lên! Đã được một nửa rồi!');
         }
     }
 
@@ -273,26 +278,21 @@ export function initResolutionsStorage() {
 
 // ===== RANDOM RESOLUTION GENERATOR =====
 const resolutionIdeas = [
-    { title: "Learn a New Language", icon: "🌍", desc: "Master Spanish, Japanese, or another language" },
-    { title: "Read 52 Books", icon: "📚", desc: "One book every week throughout 2026" },
-    { title: "Run a Marathon", icon: "🏃", desc: "Train and complete a 26.2 mile race" },
-    { title: "Learn to Code", icon: "💻", desc: "Master Python, JavaScript or another language" },
-    { title: "Start a Side Business", icon: "💼", desc: "Turn your passion into profit" },
-    { title: "Practice Daily Meditation", icon: "🧘", desc: "10 minutes of mindfulness each day" },
-    { title: "Cook 100 New Recipes", icon: "👨‍🍳", desc: "Expand your culinary skills" },
-    { title: "Save $10,000", icon: "💰", desc: "Build your emergency fund" },
-    { title: "Learn an Instrument", icon: "🎸", desc: "Master guitar, piano, or another instrument" },
-    { title: "Volunteer Monthly", icon: "❤️", desc: "Give back to your community" },
-    { title: "Wake Up at 5 AM", icon: "⏰", desc: "Join the 5 AM club for productivity" },
-    { title: "Travel to 5 Countries", icon: "✈️", desc: "Explore new cultures and places" },
-    { title: "Write a Book", icon: "✍️", desc: "Pen your memoir, novel, or guide" },
-    { title: "Get Fit & Healthy", icon: "💪", desc: "Achieve your ideal fitness level" },
-    { title: "Learn Photography", icon: "📸", desc: "Capture beautiful moments professionally" },
-    { title: "Start a YouTube Channel", icon: "🎥", desc: "Share your knowledge with the world" },
-    { title: "Master Public Speaking", icon: "🎤", desc: "Conquer your fear and speak confidently" },
-    { title: "Build a Portfolio", icon: "🎨", desc: "Showcase your best work online" },
-    { title: "Network & Connect", icon: "🤝", desc: "Make 100 meaningful professional connections" },
-    { title: "Practice Gratitude Daily", icon: "🙏", desc: "Write 3 things you're grateful for each day" }
+    { title: "Học Nấu Món Mới", icon: "👨‍🍳", desc: "Cùng nhau nấu những bữa ăn ngon vào cuối tuần" },
+    { title: "Đọc 12 Cuốn Sách", icon: "📚", desc: "Mỗi tháng cùng đọc và thảo luận một cuốn sách" },
+    { title: "Chạy Bộ Cùng Nhau", icon: "🏃", desc: "Rèn luyện sức khỏe mỗi buổi sáng" },
+    { title: "Học Kỹ Năng Mới", icon: "💻", desc: "Cùng học một ngôn ngữ hoặc kỹ năng mới" },
+    { title: "Kinh Doanh Nhỏ", icon: "💼", desc: "Thử sức với một dự án kinh doanh chung" },
+    { title: "Thiền Định Mỗi Ngày", icon: "🧘", desc: "10 phút tĩnh tâm mỗi ngày bên nhau" },
+    { title: "Tiết Kiệm Chung", icon: "💰", desc: "Xây dựng quỹ cho tương lai của hai đứa" },
+    { title: "Học Chơi Nhạc Cụ", icon: "🎸", desc: "Anh đàn em hát, vui cửa vui nhà" },
+    { title: "Làm Tình Nguyện", icon: "❤️", desc: "Chia sẻ yêu thương với cộng đồng" },
+    { title: "Dậy Sớm", icon: "⏰", desc: "Cùng nhau đón bình minh và tập thể dục" },
+    { title: "Du Lịch 2 Nơi Mới", icon: "✈️", desc: "Khám phá những vùng đất mới lạ cùng nhau" },
+    { title: "Viết Nhật Ký", icon: "✍️", desc: "Ghi lại những kỷ niệm đẹp mỗi ngày" },
+    { title: "Sống Healthy", icon: "💪", desc: "Ăn uống lành mạnh và tập luyện đều đặn" },
+    { title: "Chụp Bộ Ảnh Đôi", icon: "📸", desc: "Lưu giữ thanh xuân rực rỡ bên nhau" },
+    { title: "Hẹn Hò Lãng Mạn", icon: "🍷", desc: "Dành trọn vẹn tối thứ 7 cho nhau" }
 ];
 
 export function generateRandomResolution() {
@@ -326,10 +326,10 @@ function showResolutionModal(resolution) {
             <p class="modal-desc">${resolution.desc}</p>
             <div class="modal-actions">
                 <button class="btn btn-primary" onclick="this.closest('.resolution-modal').remove()">
-                    I'll do it! 💪
+                    Quyết tâm! 💪
                 </button>
                 <button class="btn btn-secondary" onclick="generateRandomResolution()">
-                    Try Another 🔄
+                    Gợi ý khác 🔄
                 </button>
             </div>
         </div>
