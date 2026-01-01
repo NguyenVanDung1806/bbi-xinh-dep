@@ -1,21 +1,32 @@
 // ===== COUNTDOWN MODULE =====
 import { launchAutoFireworks } from './animations.js';
 
+let celebrationShowed = false;
+
 /**
  * Initialize and start the countdown timer
  */
 export function initCountdown() {
     const targetDate = new Date('January 1, 2026 00:00:00').getTime();
+    let isInitialCheck = true;
 
     function updateCountdown() {
         const now = new Date().getTime();
         const distance = targetDate - now;
 
         if (distance < 0) {
-            showNewYearCelebration();
+            if (!celebrationShowed) {
+                // Only auto-launch fireworks if the countdown reached zero while the user was already on the page
+                // If they load the page after New Year has already started, we just show the message without auto-firing.
+                const shouldLaunch = !isInitialCheck;
+                showNewYearCelebration(shouldLaunch);
+                celebrationShowed = true;
+            }
+            isInitialCheck = false;
             return;
         }
 
+        isInitialCheck = false;
         const days = Math.floor(distance / (1000 * 60 * 60 * 24));
         const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
         const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
@@ -82,8 +93,9 @@ function updateYearProgress() {
 
 /**
  * Show New Year celebration when countdown reaches zero
+ * @param {Boolean} launchFireworks - Whether to automatically start fireworks
  */
-function showNewYearCelebration() {
+function showNewYearCelebration(launchFireworks = true) {
     const heroTitle = document.querySelector('.hero-title');
     const countdownDisplay = document.querySelector('.countdown-display');
 
@@ -101,7 +113,9 @@ function showNewYearCelebration() {
         `;
     }
 
-    launchAutoFireworks();
+    if (launchFireworks) {
+        launchAutoFireworks();
+    }
 }
 
 /**
